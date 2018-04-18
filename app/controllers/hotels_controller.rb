@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /hotels
   # GET /hotels.json
   def index
@@ -24,7 +24,7 @@ class HotelsController < ApplicationController
   # POST /hotels
   # POST /hotels.json
   def create
-    @hotel = Hotel.new(hotel_params)
+    @hotel = current_user.hotels.create(hotel_params)
 
     respond_to do |format|
       if @hotel.save
@@ -69,6 +69,6 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :description)
+      params.require(:hotel).permit(:name, :description, :avatar)
     end
 end
