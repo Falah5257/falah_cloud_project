@@ -21,10 +21,14 @@ class AttractionsController < ApplicationController
   def edit
   end
 
+  def manage_attractions
+    @attractions = current_user.attractions
+  end
+
   # POST /attractions
   # POST /attractions.json
   def create
-    @attraction = Attraction.new(attraction_params)
+    @attraction = current_user.attractions.new(attraction_params)
 
     respond_to do |format|
       if @attraction.save

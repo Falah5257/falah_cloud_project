@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit,:new, :update, :destroy]
   # GET /hotels
   # GET /hotels.json
   def index
@@ -17,6 +17,9 @@ class HotelsController < ApplicationController
     @hotel = Hotel.new
   end
 
+  def manage_hotels
+    @hotels = current_user.hotels
+  end
   # GET /hotels/1/edit
   def edit
   end

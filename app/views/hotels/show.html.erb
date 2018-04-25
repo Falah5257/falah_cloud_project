@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class = "container" >
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @hotel.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @hotel.description %>
-</p>
-
-<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
-<%= link_to 'Back', hotels_path %>
+  <p>
+    <strong>Name:</strong>
+    <%= @hotel.name %>
+  </p>
+  <%= image_tag @hotel.avatar.url(:medium) %>
+  <br> 
+  <p>
+    <strong>Description:</strong>
+    <%= @hotel.description %>
+  </p>
+  <% if current_user %>
+    <% if current_user.user_type != 1 %>
+      <p>
+        <Strong> Average Ratings: </Strong> <%= rating_for @hotel, 'name' %>
+      </p>
+    <% end %>
+    
+  <% end %>
+</div>

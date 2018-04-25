@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418142630) do
+ActiveRecord::Schema.define(version: 20180425005022) do
 
   create_table "attractions", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "user_id"
   end
 
   create_table "average_caches", force: :cascade do |t|
@@ -87,6 +87,17 @@ ActiveRecord::Schema.define(version: 20180418142630) do
     t.datetime "updated_at", null: false
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
     t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
+  end
+
+# Could not dump table "resturants" because of following StandardError
+#   Unknown type 'avatar' for column 'attachement'
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "description"
+    t.integer "resturant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
 # Could not dump table "users" because of following StandardError
