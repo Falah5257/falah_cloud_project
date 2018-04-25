@@ -4,4 +4,5 @@ class Resturant < ApplicationRecord
   ratyrate_rateable "name"
   belongs_to :user
   has_many :reviews, dependent: :delete_all
+  belongs_to :location
 end
