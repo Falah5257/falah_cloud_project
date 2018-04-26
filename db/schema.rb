@@ -49,13 +49,6 @@ ActiveRecord::Schema.define(version: 20180425105437) do
     t.integer "location_id"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "country"
-    t.string "city"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "overall_averages", force: :cascade do |t|
     t.string "rateable_type"
     t.integer "rateable_id"
